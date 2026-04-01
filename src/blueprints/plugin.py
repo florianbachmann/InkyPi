@@ -278,6 +278,8 @@ def preview():
 
         plugin = get_plugin_instance(plugin_config)
         image = plugin.generate_image(plugin_settings, device_config)
+        if image is None:
+            return jsonify({"error": "An error occurred: NoneType — Chromium may not be installed"}), 500
 
         buffer = BytesIO()
         image.save(buffer, format='PNG')
