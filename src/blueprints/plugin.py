@@ -268,7 +268,9 @@ def preview():
     try:
         plugin_settings = parse_form(request.form)
         plugin_settings.update(handle_request_files(request.files))
-        plugin_id = plugin_settings.pop("plugin_id")
+        plugin_id = plugin_settings.pop("plugin_id", None)
+        if not plugin_id:
+            return jsonify({"error": "plugin_id is required"}), 400
 
         plugin_config = device_config.get_plugin(plugin_id)
         if not plugin_config:
