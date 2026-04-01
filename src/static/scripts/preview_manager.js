@@ -129,8 +129,10 @@ const PreviewManager = (() => {
 
     function listenToForm() {
         document.querySelectorAll('form select, form input, form textarea').forEach(el => {
+            if (el.dataset.previewBound) return;
             el.addEventListener('change', generate);
             el.addEventListener('input', generate);
+            el.dataset.previewBound = '1';
         });
     }
 
