@@ -138,7 +138,9 @@ const PreviewManager = (() => {
         /**
          * Initialize preview for a plugin.
          * @param {string} id - The plugin_id (e.g. 'clock', 'countdown')
-         * @param {string} [containerId='preview-widget'] - ID of the container element
+         * @param {Object} [options] - Configuration options
+         * @param {Object} [options.required] - Map of field names to hint messages for client-side validation
+         * @param {string} [options.containerId='preview-widget'] - ID of the container element
          */
         init(id, options = {}) {
             pluginId = id;
